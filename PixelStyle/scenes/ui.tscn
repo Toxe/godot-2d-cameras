@@ -168,6 +168,7 @@ Switch Camera: C
 Move Camera (Offset): Arrow Keys
 Move Camera (Position): Ctrl + Arrow Keys
 Slow Camera Movement: Hold Shift
+Zoom Camera: Mouse Wheel or Y/Z and X
 Recenter Camera: R
 Toggle Camera Smoothing: S
 Toggle Snap 2D Transforms to Pixel: N

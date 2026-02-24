@@ -33,8 +33,8 @@ func _process(_delta: float) -> void:
             Format.format_position(camera_manager.current_camera.get_screen_center_position(), camera_manager.get_current_camera_coords_type()),
         ]
 
-        camera_zoom_slider.value = camera_manager.current_camera.zoom.x
-        camera_zoom_label.text = "%.2f" % camera_manager.current_camera.zoom.x
+        camera_zoom_slider.set_value_no_signal(camera_manager.get_current_camera_zoom_target().x)
+        camera_zoom_label.text = "%.2f" % camera_manager.get_current_camera_zoom_target().x
 
     if texture_rect:
         texture_rect_label.text = "%s\n%s" % [Format.format_position(texture_rect.get_canvas_transform().origin), Format.format_position(texture_rect.get_screen_transform().origin)]
@@ -161,8 +161,7 @@ func transform_ui_to_screen_coords(ui_coords: Vector2) -> Vector2:
 
 
 func _on_camera_zoom_slider_value_changed(value: float) -> void:
-    camera_manager.current_camera.zoom = Vector2(value, value)
-    camera_zoom_label.text = "%.2f" % camera_manager.current_camera.zoom.x
+    camera_manager.set_current_camera_zoom_target(Vector2(value, value))
 
 
 func _on_king_speed_slider_value_changed(value: float) -> void:
