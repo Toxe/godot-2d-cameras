@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cl4oo5o1s3gb8"]
 
 [ext_resource type="Script" uid="uid://d2iku4cotnqps" path="res://scenes/game.gd" id="1_iywne"]
-[ext_resource type="Texture2D" uid="uid://du8lun6vdtf55" path="res://assets/images/IMG_7413.webp" id="1_uwrxv"]
+[ext_resource type="Texture2D" uid="uid://4ib7y6hmw085" path="res://assets/images/IMG_7286.png" id="2_iywne"]
 [ext_resource type="Texture2D" uid="uid://lnnk2hvl54dk" path="res://assets/images/tile_0091.png" id="2_lbhrr"]
 [ext_resource type="Texture2D" uid="uid://386tbj5rlxre" path="res://assets/images/tile_0088.png" id="3_iywne"]
 [ext_resource type="Texture2D" uid="uid://cjwu6msfxktac" path="res://assets/images/tile_0090.png" id="4_p57ef"]
@@ -23,59 +23,60 @@ script = ExtResource("1_iywne")
 
 [node name="Background" type="Sprite2D" parent="." unique_id=2088718703]
 z_index = -1
-texture = ExtResource("1_uwrxv")
+texture = ExtResource("2_iywne")
 centered = false
 metadata/_edit_lock_ = true
 
 [node name="Tile0090" type="Sprite2D" parent="." unique_id=1373104537]
-position = Vector2(334, 250)
+position = Vector2(1196, 1856.3118)
 texture = ExtResource("4_p57ef")
 
 [node name="Tile0094" type="Sprite2D" parent="." unique_id=1427486940]
-position = Vector2(341, 254)
+position = Vector2(1203, 1860.3118)
 texture = ExtResource("4_p57ef")
 
 [node name="Tile0092" type="Sprite2D" parent="." unique_id=1339493006]
-position = Vector2(342, 259)
+position = Vector2(1204, 1865.3118)
 texture = ExtResource("4_p57ef")
 
 [node name="Tile0093" type="Sprite2D" parent="." unique_id=623444866]
-position = Vector2(346, 264)
+position = Vector2(1208, 1870.3118)
 texture = ExtResource("4_p57ef")
 
 [node name="Tile0095" type="Sprite2D" parent="." unique_id=1750183903]
-position = Vector2(317, 251)
+position = Vector2(1179, 1857.3118)
 texture = ExtResource("4_p57ef")
 
 [node name="Tile0096" type="Sprite2D" parent="." unique_id=1150899744]
-position = Vector2(324, 256)
+position = Vector2(1186, 1862.3118)
 texture = ExtResource("4_p57ef")
 
 [node name="Tile0097" type="Sprite2D" parent="." unique_id=2127306573]
-position = Vector2(329, 261)
+position = Vector2(1191, 1867.3118)
 texture = ExtResource("4_p57ef")
 
 [node name="Tile0098" type="Sprite2D" parent="." unique_id=52592098]
-position = Vector2(329, 266)
+position = Vector2(1191, 1872.3118)
 texture = ExtResource("4_p57ef")
 
 [node name="Tile0099" type="Sprite2D" parent="." unique_id=1024502476]
-position = Vector2(300, 250)
+position = Vector2(1162, 1856.3118)
 texture = ExtResource("4_p57ef")
 
 [node name="Tile0100" type="Sprite2D" parent="." unique_id=1959902130]
-position = Vector2(305, 254)
+position = Vector2(1167, 1860.3118)
 texture = ExtResource("4_p57ef")
 
 [node name="Tile0101" type="Sprite2D" parent="." unique_id=617511049]
-position = Vector2(309, 259)
+position = Vector2(1171, 1865.3118)
 texture = ExtResource("4_p57ef")
 
 [node name="Tile0102" type="Sprite2D" parent="." unique_id=2011033412]
-position = Vector2(311, 264)
+position = Vector2(1173, 1870.3118)
 texture = ExtResource("4_p57ef")
 
 [node name="KingPath2D" type="Path2D" parent="." unique_id=178148283]
+position = Vector2(862, 1606.3118)
 curve = SubResource("Curve2D_p57ef")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="KingPath2D" unique_id=1976641749]
@@ -90,7 +91,7 @@ position_smoothing_enabled = true
 position_smoothing_speed = 1.0
 
 [node name="PriestPath2D" type="Path2D" parent="." unique_id=274425350]
-position = Vector2(275, 240)
+position = Vector2(1137, 1846.3118)
 curve = SubResource("Curve2D_iywne")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="PriestPath2D" unique_id=643123482]
