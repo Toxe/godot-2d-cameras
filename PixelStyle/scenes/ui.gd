@@ -26,11 +26,11 @@ func _process(_delta: float) -> void:
         camera_label.text = "%s %s\n%s\n%s\n%s\n%s\n%s\n%s" % [
             camera_manager.current_camera.get_coords_type_symbol(), camera_manager.current_camera.name,
             "on" if camera_manager.current_camera.position_smoothing_enabled else "off",
-            Format.format_position(camera_manager.current_camera.position, camera_manager.current_camera.get_coords_type()),
-            Format.format_position(camera_manager.current_camera.global_position, camera_manager.current_camera.get_coords_type()),
-            Format.format_position(camera_manager.current_camera.get_target_position(), camera_manager.current_camera.get_coords_type()),
-            Format.format_position(camera_manager.current_camera.offset, camera_manager.current_camera.get_coords_type()),
-            Format.format_position(camera_manager.current_camera.get_screen_center_position(), camera_manager.current_camera.get_coords_type()),
+            Format.format_position(camera_manager.current_camera.position, camera_manager.current_camera.coords_type),
+            Format.format_position(camera_manager.current_camera.global_position, camera_manager.current_camera.coords_type),
+            Format.format_position(camera_manager.current_camera.get_target_position(), camera_manager.current_camera.coords_type),
+            Format.format_position(camera_manager.current_camera.offset, camera_manager.current_camera.coords_type),
+            Format.format_position(camera_manager.current_camera.get_screen_center_position(), camera_manager.current_camera.coords_type),
         ]
 
         camera_zoom_slider.set_value_no_signal(camera_manager.current_camera.get_zoom_target().x)
@@ -66,7 +66,7 @@ func _draw() -> void:
         var camera_target_position := camera_manager.current_camera.get_target_position()
         var camera_target_position_plus_offset := camera_target_position + camera_offset
         var camera_screen_center_position := camera_manager.current_camera.get_screen_center_position()
-        var camera_coords_type := camera_manager.current_camera.get_coords_type()
+        var camera_coords_type := camera_manager.current_camera.coords_type
 
         assert(camera_coords_type in [CustomCamera.CoordsType.World, CustomCamera.CoordsType.UI])
 

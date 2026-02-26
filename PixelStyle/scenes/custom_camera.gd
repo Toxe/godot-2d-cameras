@@ -22,13 +22,6 @@ static func get_symbol_for_coords_type(type: CoordsType) -> String:
         _: return "❓"
 
 
-func get_coords_type() -> CoordsType:
-    match name:
-        "WorldCamera": return CoordsType.World
-        "MainCamera": return CoordsType.UI
-        _: return CoordsType.Unknown
-
-
 func get_coords_type_symbol() -> String:
     return get_symbol_for_coords_type(coords_type)
 
