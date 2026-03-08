@@ -16,8 +16,10 @@ func _process(delta: float) -> void:
 
 
 func _unhandled_input(event: InputEvent) -> void:
-    if event.is_action_pressed("switch_camera"):
+    if event.is_action_pressed("next_camera", false, true):
         next_camera()
+    elif event.is_action_pressed("previous_camera", false, true):
+        previous_camera()
     elif event.is_action_pressed("recenter_camera"):
         recenter_camera()
     elif event.is_action_pressed("toggle_camera_smoothing"):
@@ -33,6 +35,11 @@ func _unhandled_input(event: InputEvent) -> void:
 func next_camera() -> void:
     var next_index := wrapi(_get_current_camera_index() + 1, 0, cameras.size())
     _switch_to_camera(next_index)
+
+
+func previous_camera() -> void:
+    var previous_index := wrapi(_get_current_camera_index() - 1, 0, cameras.size())
+    _switch_to_camera(previous_index)
 
 
 func select_camera(camera_name: String) -> void:
