@@ -104,7 +104,7 @@ func _draw() -> void:
     var world_viewport_canvas_coords := transform_to_world_viewport_canvas_coords(from_type, ui_coords)
     var texture_coords := transform_to_texture_coords(from_type, ui_coords)
     var ui_canvas_coords := transform_to_ui_canvas_coords(from_type, ui_coords)
-    var main_viewport_coords := transform_to_main_viewport_coords(from_type, ui_coords)
+    var main_coords := transform_to_main_coords(from_type, ui_coords)
     var screen_coords := transform_to_screen_coords(from_type, ui_coords)
 
     var lines: Array[String]
@@ -114,7 +114,7 @@ func _draw() -> void:
     lines.append(Format.format_position(texture_coords, Enums.CoordsType.Texture))
     lines.append(Format.format_position(ui_coords, Enums.CoordsType.UI))
     lines.append(Format.format_position(ui_canvas_coords, Enums.CoordsType.UICanvas))
-    lines.append(Format.format_position(main_viewport_coords, Enums.CoordsType.Main))
+    lines.append(Format.format_position(main_coords, Enums.CoordsType.Main))
     lines.append(Format.format_position(screen_coords, Enums.CoordsType.Screen, true))
     DebugDraw.draw_labeled_circle(self, ui_coords, 3, Color.LIGHT_GRAY, Color.BLACK, 0.25, lines)
 
@@ -345,7 +345,7 @@ func transform_to_ui_canvas_coords(from: Enums.CoordsType, coords: Vector2) -> V
             return Vector2.ZERO
 
 
-func transform_to_main_viewport_coords(from: Enums.CoordsType, coords: Vector2) -> Vector2:
+func transform_to_main_coords(from: Enums.CoordsType, coords: Vector2) -> Vector2:
     match from:
         Enums.CoordsType.World, Enums.CoordsType.WorldActor:
             var coords_in_world := coords
@@ -443,7 +443,7 @@ func _debug_dump_coords(from_type: Enums.CoordsType) -> void:
         values[Enums.CoordsType.Texture].append(transform_to_texture_coords(from_type, from[i]))
         values[Enums.CoordsType.UI].append(transform_to_ui_coords(from_type, from[i]))
         values[Enums.CoordsType.UICanvas].append(transform_to_ui_canvas_coords(from_type, from[i]))
-        values[Enums.CoordsType.Main].append(transform_to_main_viewport_coords(from_type, from[i]))
+        values[Enums.CoordsType.Main].append(transform_to_main_coords(from_type, from[i]))
         values[Enums.CoordsType.Screen].append(transform_to_screen_coords(from_type, from[i]))
     for t: int in Enums.CoordsType.values():
         var s := ""

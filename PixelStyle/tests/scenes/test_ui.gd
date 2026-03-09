@@ -56,7 +56,7 @@ func test_transform_from_World_coords() -> void:
         assert_almost_eq(ui.transform_to_texture_coords(from_type, from[i]), to_texture_coords[i], error_margin)
         assert_almost_eq(ui.transform_to_ui_coords(from_type, from[i]), to_ui_coords[i], error_margin)
         assert_almost_eq(ui.transform_to_ui_canvas_coords(from_type, from[i]), to_ui_canvas_coords[i], error_margin)
-        assert_almost_eq(ui.transform_to_main_viewport_coords(from_type, from[i]), to_main_viewport_coords[i], error_margin)
+        assert_almost_eq(ui.transform_to_main_coords(from_type, from[i]), to_main_viewport_coords[i], error_margin)
         assert_almost_eq(ui.transform_to_screen_coords(from_type, from[i]), to_screen_coords[i], error_margin)
 
 
@@ -80,7 +80,7 @@ func test_transform_from_WorldActor_coords() -> void:
         assert_almost_eq(ui.transform_to_texture_coords(from_type, from[i]), to_texture_coords[i], error_margin)
         assert_almost_eq(ui.transform_to_ui_coords(from_type, from[i]), to_ui_coords[i], error_margin)
         assert_almost_eq(ui.transform_to_ui_canvas_coords(from_type, from[i]), to_ui_canvas_coords[i], error_margin)
-        assert_almost_eq(ui.transform_to_main_viewport_coords(from_type, from[i]), to_main_viewport_coords[i], error_margin)
+        assert_almost_eq(ui.transform_to_main_coords(from_type, from[i]), to_main_viewport_coords[i], error_margin)
         assert_almost_eq(ui.transform_to_screen_coords(from_type, from[i]), to_screen_coords[i], error_margin)
 
 
@@ -104,7 +104,7 @@ func test_transform_from_WorldViewportCanvas_coords() -> void:
         assert_almost_eq(ui.transform_to_texture_coords(from_type, from[i]), to_texture_coords[i], error_margin)
         assert_almost_eq(ui.transform_to_ui_coords(from_type, from[i]), to_ui_coords[i], error_margin)
         assert_almost_eq(ui.transform_to_ui_canvas_coords(from_type, from[i]), to_ui_canvas_coords[i], error_margin)
-        assert_almost_eq(ui.transform_to_main_viewport_coords(from_type, from[i]), to_main_viewport_coords[i], error_margin)
+        assert_almost_eq(ui.transform_to_main_coords(from_type, from[i]), to_main_viewport_coords[i], error_margin)
         assert_almost_eq(ui.transform_to_screen_coords(from_type, from[i]), to_screen_coords[i], error_margin)
 
 
@@ -128,7 +128,7 @@ func test_transform_from_Texture_coords() -> void:
         assert_almost_eq(ui.transform_to_texture_coords(from_type, from[i]), from[i], error_margin)  # to self
         assert_almost_eq(ui.transform_to_ui_coords(from_type, from[i]), to_ui_coords[i], error_margin)
         assert_almost_eq(ui.transform_to_ui_canvas_coords(from_type, from[i]), to_ui_canvas_coords[i], error_margin)
-        assert_almost_eq(ui.transform_to_main_viewport_coords(from_type, from[i]), to_main_viewport_coords[i], error_margin)
+        assert_almost_eq(ui.transform_to_main_coords(from_type, from[i]), to_main_viewport_coords[i], error_margin)
         assert_almost_eq(ui.transform_to_screen_coords(from_type, from[i]), to_screen_coords[i], error_margin)
 
 
@@ -152,7 +152,7 @@ func test_transform_from_UI_coords() -> void:
         assert_almost_eq(ui.transform_to_texture_coords(from_type, from[i]), to_texture_coords[i], error_margin)
         assert_almost_eq(ui.transform_to_ui_coords(from_type, from[i]), from[i], error_margin)  # to self
         assert_almost_eq(ui.transform_to_ui_canvas_coords(from_type, from[i]), to_ui_canvas_coords[i], error_margin)
-        assert_almost_eq(ui.transform_to_main_viewport_coords(from_type, from[i]), to_main_viewport_coords[i], error_margin)
+        assert_almost_eq(ui.transform_to_main_coords(from_type, from[i]), to_main_viewport_coords[i], error_margin)
         assert_almost_eq(ui.transform_to_screen_coords(from_type, from[i]), to_screen_coords[i], error_margin)
 
 
@@ -176,7 +176,7 @@ func test_transform_from_UICanvas_coords() -> void:
         assert_almost_eq(ui.transform_to_texture_coords(from_type, from[i]), to_texture_coords[i], error_margin)
         assert_almost_eq(ui.transform_to_ui_coords(from_type, from[i]), to_ui_coords[i], error_margin)
         assert_almost_eq(ui.transform_to_ui_canvas_coords(from_type, from[i]), from[i], error_margin)  # to self
-        assert_almost_eq(ui.transform_to_main_viewport_coords(from_type, from[i]), to_main_viewport_coords[i], error_margin)
+        assert_almost_eq(ui.transform_to_main_coords(from_type, from[i]), to_main_viewport_coords[i], error_margin)
         assert_almost_eq(ui.transform_to_screen_coords(from_type, from[i]), to_screen_coords[i], error_margin)
 
 
@@ -200,7 +200,7 @@ func test_transform_from_Main_coords() -> void:
         assert_almost_eq(ui.transform_to_texture_coords(from_type, from[i]), to_texture_coords[i], error_margin)
         assert_almost_eq(ui.transform_to_ui_coords(from_type, from[i]), to_ui_coords[i], error_margin)
         assert_almost_eq(ui.transform_to_ui_canvas_coords(from_type, from[i]), to_ui_canvas_coords[i], error_margin)
-        assert_almost_eq(ui.transform_to_main_viewport_coords(from_type, from[i]), from[i], error_margin)  # to self
+        assert_almost_eq(ui.transform_to_main_coords(from_type, from[i]), from[i], error_margin)  # to self
         assert_almost_eq(ui.transform_to_screen_coords(from_type, from[i]), to_screen_coords[i], error_margin)
 
 
@@ -224,5 +224,5 @@ func test_transform_from_Screen_coords() -> void:
         assert_almost_eq(ui.transform_to_texture_coords(from_type, from[i]), to_texture_coords[i], error_margin)
         assert_almost_eq(ui.transform_to_ui_coords(from_type, from[i]), to_ui_coords[i], error_margin)
         assert_almost_eq(ui.transform_to_ui_canvas_coords(from_type, from[i]), to_ui_canvas_coords[i], error_margin)
-        assert_almost_eq(ui.transform_to_main_viewport_coords(from_type, from[i]), to_main_viewport_coords[i], error_margin)
+        assert_almost_eq(ui.transform_to_main_coords(from_type, from[i]), to_main_viewport_coords[i], error_margin)
         assert_almost_eq(ui.transform_to_screen_coords(from_type, from[i]), from[i], error_margin)  # to self
