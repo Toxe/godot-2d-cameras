@@ -167,6 +167,7 @@ text = "Toggle Fullscreen: F
 Toggle Debug Draw: D
 Toggle Debug Text: T
 Toggle UI: U
+Next/Previous Actor: A / Shift+A
 Next/Previous Camera: C / Shift+C
 Move Camera (Offset): Arrow Keys
 Move Camera (Position): Ctrl + Arrow Keys

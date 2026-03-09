@@ -137,6 +137,10 @@ func _unhandled_key_input(event: InputEvent) -> void:
         sub_viewport.snap_2d_vertices_to_pixel = !sub_viewport.snap_2d_vertices_to_pixel
     elif event.is_action_pressed("quit"):
         get_tree().quit()
+    elif event.is_action_pressed("next_actor", false, true):
+        world.next_actor()
+    elif event.is_action_pressed("previous_actor", false, true):
+        world.previous_actor()
 
 
 func transform_to_world_coords(from: Enums.CoordsType, coords: Vector2) -> Vector2:

@@ -6,6 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://lnnk2hvl54dk" path="res://assets/images/tile_0091.png" id="4_7r4gi"]
 [ext_resource type="Script" uid="uid://dydrd5l77x1f2" path="res://scenes/custom_camera.gd" id="5_w7kh3"]
 [ext_resource type="Texture2D" uid="uid://386tbj5rlxre" path="res://assets/images/tile_0088.png" id="6_e3hyu"]
+[ext_resource type="Texture2D" uid="uid://dau4nff1fgbr8" path="res://assets/images/plane.png" id="7_4mrxx"]
+[ext_resource type="Texture2D" uid="uid://r4sbrx6kknmf" path="res://assets/images/helo.png" id="8_7r4gi"]
 
 [sub_resource type="Curve2D" id="Curve2D_p57ef"]
 _data = {
@@ -19,8 +21,10 @@ _data = {
 }
 point_count = 4
 
-[node name="World" type="Node2D" unique_id=1353571868]
+[node name="World" type="Node2D" unique_id=1353571868 node_paths=PackedStringArray("current_actor", "actors")]
 script = ExtResource("1_qfnet")
+current_actor = NodePath("KingPath2D/PathFollow2D/King")
+actors = [NodePath("KingPath2D/PathFollow2D/King"), NodePath("PriestPath2D/PathFollow2D/Priest"), NodePath("Helo"), NodePath("Plane")]
 
 [node name="Background" type="Sprite2D" parent="." unique_id=2088718703]
 z_index = -1
@@ -110,3 +114,11 @@ position_smoothing_enabled = true
 position_smoothing_speed = 1.0
 script = ExtResource("5_w7kh3")
 coords_type = 1
+
+[node name="Helo" type="Sprite2D" parent="." unique_id=431676240]
+position = Vector2(1285.5, 1418.5)
+texture = ExtResource("8_7r4gi")
+
+[node name="Plane" type="Sprite2D" parent="." unique_id=1467293958]
+position = Vector2(1239.5, 1406.5)
+texture = ExtResource("7_4mrxx")
