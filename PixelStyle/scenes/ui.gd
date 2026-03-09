@@ -67,11 +67,8 @@ func _draw() -> void:
         var camera_target_position_plus_offset := camera_target_position + camera_offset
         var camera_screen_center_position := camera_manager.current_camera.get_screen_center_position()
         var camera_coords_type := camera_manager.current_camera.coords_type
-
         var ui_coords_camera_target_position_plus_offset := transform_to_ui_coords(camera_coords_type, camera_target_position_plus_offset)
         var ui_coords_camera_screen_center_position := transform_to_ui_coords(camera_coords_type, camera_screen_center_position)
-        var world_coords_camera_target_position_plus_offset := transform_to_world_coords(camera_coords_type, camera_target_position_plus_offset)
-        var world_coords_camera_screen_center_position := transform_to_world_coords(camera_coords_type, camera_screen_center_position)
 
         if !camera_position.is_zero_approx():
             var ui_coords_from := transform_to_ui_coords(camera_coords_type, camera_target_position - camera_position)
@@ -85,19 +82,17 @@ func _draw() -> void:
             draw_line(ui_coords_from, ui_coords_to, Color.DARK_GRAY, 0.5)
 
         draw_dashed_line(ui_coords_camera_target_position_plus_offset, ui_coords_camera_screen_center_position, Color.YELLOW, 0.5, 1, false)
-        DebugDraw.draw_labeled_circle(self, ui_coords_camera_screen_center_position, 8, Color.YELLOW, Color.BLACK, 1, [
-            "🎥 screen_center_position: %s" % Format.format_position(world_coords_camera_screen_center_position, Enums.CoordsType.World),
-        ])
+        DebugDraw.draw_labeled_circle(self, ui_coords_camera_screen_center_position, 8, Color.YELLOW, Color.BLACK, 1, ["🎥 screen_center_position: %s" % Format.format_position(camera_screen_center_position, camera_coords_type)])
 
         var target_position_label_lines: Array[String]
         if camera_offset.is_zero_approx():
             target_position_label_lines = [
-                "🎥 target_position: %s" % Format.format_position(world_coords_camera_target_position_plus_offset, Enums.CoordsType.World),
+                "🎥 target_position: %s" % Format.format_position(camera_target_position_plus_offset, camera_coords_type),
             ]
         else:
             target_position_label_lines = [
-                "🎥 target_position + offset: %s" % Format.format_position(world_coords_camera_target_position_plus_offset, Enums.CoordsType.World),
-                "🎥 offset: %s" % Format.format_position(camera_offset, Enums.CoordsType.World),
+                "🎥 target_position + offset: %s" % Format.format_position(camera_target_position_plus_offset, camera_coords_type),
+                "🎥 offset: %s" % Format.format_position(camera_offset, camera_coords_type),
             ]
         DebugDraw.draw_labeled_circle(self, ui_coords_camera_target_position_plus_offset, 12, Color.GREEN, Color.BLACK, 1, target_position_label_lines)
 
