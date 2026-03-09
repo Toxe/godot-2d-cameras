@@ -21,6 +21,7 @@ stretch_mode = 4
 metadata/_edit_lock_ = true
 
 [node name="TextureCamera" type="Camera2D" parent="TextureRect" unique_id=1766197882]
+visible = false
 enabled = false
 position_smoothing_enabled = true
 position_smoothing_speed = 1.0
@@ -37,6 +38,7 @@ texture_rect = NodePath("../../TextureRect")
 sub_viewport = NodePath("../../SubViewport")
 
 [node name="UICamera" type="Camera2D" parent="CanvasLayer/UI" unique_id=1440361109]
+visible = false
 enabled = false
 position_smoothing_enabled = true
 position_smoothing_speed = 1.0
@@ -44,6 +46,7 @@ script = ExtResource("5_tbgi4")
 coords_type = 5
 
 [node name="UICanvasCamera" type="Camera2D" parent="CanvasLayer" unique_id=92505461]
+visible = false
 enabled = false
 position_smoothing_enabled = true
 position_smoothing_speed = 1.0
@@ -60,6 +63,7 @@ size = Vector2i(640, 360)
 [node name="World" parent="SubViewport" unique_id=1879872571 instance=ExtResource("1_o5qli")]
 
 [node name="WorldViewportCanvasCamera" type="Camera2D" parent="SubViewport" unique_id=1292728944]
+visible = false
 enabled = false
 position_smoothing_enabled = true
 position_smoothing_speed = 1.0
@@ -68,9 +72,10 @@ coords_type = 3
 
 [node name="CameraManager" type="Node" parent="." unique_id=524834277 node_paths=PackedStringArray("cameras")]
 script = ExtResource("4_jyhfs")
-cameras = [NodePath("../SubViewport/World/KingPath2D/PathFollow2D/King/WorldActorCamera"), NodePath("../SubViewport/World/WorldCamera"), NodePath("../SubViewport/WorldViewportCanvasCamera"), NodePath("../MainCamera"), NodePath("../TextureRect/TextureCamera"), NodePath("../CanvasLayer/UICanvasCamera"), NodePath("../CanvasLayer/UI/UICamera")]
+cameras = [NodePath("../SubViewport/World/KingPath2D/PathFollow2D/King/WorldActorCamera"), NodePath("../SubViewport/World/WorldCamera")]
 
 [node name="MainCamera" type="Camera2D" parent="." unique_id=1991759693]
+visible = false
 enabled = false
 position_smoothing_enabled = true
 position_smoothing_speed = 1.0
