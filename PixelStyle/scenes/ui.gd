@@ -22,6 +22,10 @@ class_name UI extends Control
 func _process(_delta: float) -> void:
     frame_label.text = "%0.6f\n%d\n%0.1f" % [Time.get_ticks_usec() / 1_000_000.0, Engine.get_process_frames(), Performance.get_monitor(Performance.TIME_FPS)]
 
+    if world && camera_manager && camera_manager.current_camera:
+        if camera_manager.current_camera.name != "WorldActorCamera":
+            camera_manager.current_camera.global_position = transform_to_world_coords(Enums.CoordsType.World, world.current_actor.global_position)
+
     if camera_manager && camera_manager.current_camera:
         camera_label.text = "%s %s\n%s\n%s\n%s\n%s\n%s\n%s" % [
             camera_manager.current_camera.get_coords_type_symbol(), camera_manager.current_camera.name,
