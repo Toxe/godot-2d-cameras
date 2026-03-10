@@ -163,18 +163,19 @@ text = "???"
 [node name="HotkeysLabel" type="Label" parent="HBoxContainer" unique_id=1540125152]
 layout_mode = 2
 size_flags_vertical = 0
-text = "Toggle Fullscreen: F
-Toggle Debug Draw: D
-Toggle Debug Text: T
+text = "Move Actor: WASD
+Next/Previous Actor: X / Shift+X
+Toggle Fullscreen: F
+Toggle Debug Draw: F1
+Toggle Debug Text: F2
 Toggle UI: U
-Next/Previous Actor: A / Shift+A
 Next/Previous Camera: C / Shift+C
 Move Camera (Offset): Arrow Keys
 Move Camera (Position): Ctrl + Arrow Keys
 Slow Camera Movement: Hold Shift
-Zoom Camera: Mouse Wheel or Y/Z and X
+Zoom Camera: Mouse Wheel
 Recenter Camera: R
-Toggle Camera Smoothing: S
+Toggle Camera Smoothing: V
 Toggle Snap 2D Transforms to Pixel: N
 Toggle Snap 2D Vertices to Pixel: M
 Quit: Escape"
