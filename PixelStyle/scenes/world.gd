@@ -46,5 +46,4 @@ func _switch_to_actor(index: int) -> void:
     current_actor = actors[index]
     world_actor_camera.get_parent().remove_child(world_actor_camera)
     current_actor.add_child(world_actor_camera)
-    world_actor_camera.position = Vector2.ZERO
-    world_actor_camera.offset = Vector2.ZERO
+    world_actor_camera.recenter_camera()

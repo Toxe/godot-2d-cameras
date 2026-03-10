@@ -21,9 +21,9 @@ func _unhandled_input(event: InputEvent) -> void:
     elif event.is_action_pressed("previous_camera", false, true):
         previous_camera()
     elif event.is_action_pressed("recenter_camera"):
-        recenter_camera()
+        current_camera.recenter_camera()
     elif event.is_action_pressed("toggle_camera_smoothing"):
-        toggle_camera_smoothing()
+        current_camera.toggle_camera_smoothing()
     elif event.is_action_pressed("zoom_in"):
         var new_zoom_target := current_camera.get_zoom_target() + Vector2(0.1, 0.1)
         current_camera.set_zoom_target(new_zoom_target)
@@ -46,15 +46,6 @@ func select_camera(camera_name: String) -> void:
     var next_index := _find_camera_by_name(camera_name)
     if next_index >= 0:
         _switch_to_camera(next_index)
-
-
-func recenter_camera() -> void:
-    current_camera.position = Vector2.ZERO
-    current_camera.offset = Vector2.ZERO
-
-
-func toggle_camera_smoothing() -> void:
-    current_camera.position_smoothing_enabled = !current_camera.position_smoothing_enabled
 
 
 func _find_camera_by_name(camera_name: String) -> int:

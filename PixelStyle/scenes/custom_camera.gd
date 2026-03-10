@@ -7,6 +7,15 @@ var _zoom_tween: Tween
 @onready var _zoom_target := zoom
 
 
+func recenter_camera() -> void:
+    position = Vector2.ZERO
+    offset = Vector2.ZERO
+
+
+func toggle_camera_smoothing() -> void:
+    position_smoothing_enabled = !position_smoothing_enabled
+
+
 static func get_symbol_for_coords_type(type: Enums.CoordsType) -> String:
     match type:
         Enums.CoordsType.World: return "(World)"
