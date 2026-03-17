@@ -116,9 +116,9 @@ script = ExtResource("5_w7kh3")
 coords_type = 1
 
 [node name="Helo" type="Sprite2D" parent="." unique_id=431676240]
-position = Vector2(1285.5, 1418.5)
+position = Vector2(1469, 1270)
 texture = ExtResource("8_7r4gi")
 
 [node name="Plane" type="Sprite2D" parent="." unique_id=1467293958]
-position = Vector2(1239.5, 1406.5)
+position = Vector2(1212, 1114)
 texture = ExtResource("7_4mrxx")
