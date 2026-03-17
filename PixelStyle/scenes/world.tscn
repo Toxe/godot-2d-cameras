@@ -11,7 +11,7 @@
 
 [sub_resource type="Curve2D" id="Curve2D_p57ef"]
 _data = {
-"points": PackedVector2Array(-5.085176, 18.722694, 5.085176, -18.722694, 366, 251.3333, -18.352861, 1.6642394, 18.352861, -1.6642394, 420, 233, -1.1557218, -9.569376, 1.1557218, 9.569376, 440, 246, 8.043823, -1.4793239, 0, 0, 418, 270, 0, 0, -8.875943, -1.3868661, 390, 270, 7.535306, 16.41125, -7.535306, -16.41125, 366, 251.3333)
+"points": PackedVector2Array(-5.085176, 18.722694, 5.085176, -18.722694, 366, 251, -18.352861, 1.6642394, 18.352861, -1.6642394, 420, 233, -1.1557218, -9.569376, 1.1557218, 9.569376, 440, 246, 8.043823, -1.4793239, 0, 0, 418, 270, 0, 0, -8.875943, -1.3868661, 390, 270, 7.535306, 16.41125, -7.535306, -16.41125, 366, 251)
 }
 point_count = 6
 
@@ -33,59 +33,59 @@ centered = false
 metadata/_edit_lock_ = true
 
 [node name="Tile0090" type="Sprite2D" parent="." unique_id=1373104537]
-position = Vector2(1196, 1856.3118)
+position = Vector2(1196, 1856)
 texture = ExtResource("3_4mrxx")
 
 [node name="Tile0094" type="Sprite2D" parent="." unique_id=1427486940]
-position = Vector2(1203, 1860.3118)
+position = Vector2(1203, 1860)
 texture = ExtResource("3_4mrxx")
 
 [node name="Tile0092" type="Sprite2D" parent="." unique_id=1339493006]
-position = Vector2(1204, 1865.3118)
+position = Vector2(1204, 1865)
 texture = ExtResource("3_4mrxx")
 
 [node name="Tile0093" type="Sprite2D" parent="." unique_id=623444866]
-position = Vector2(1208, 1870.3118)
+position = Vector2(1208, 1870)
 texture = ExtResource("3_4mrxx")
 
 [node name="Tile0095" type="Sprite2D" parent="." unique_id=1750183903]
-position = Vector2(1179, 1857.3118)
+position = Vector2(1179, 1857)
 texture = ExtResource("3_4mrxx")
 
 [node name="Tile0096" type="Sprite2D" parent="." unique_id=1150899744]
-position = Vector2(1186, 1862.3118)
+position = Vector2(1186, 1862)
 texture = ExtResource("3_4mrxx")
 
 [node name="Tile0097" type="Sprite2D" parent="." unique_id=2127306573]
-position = Vector2(1191, 1867.3118)
+position = Vector2(1191, 1867)
 texture = ExtResource("3_4mrxx")
 
 [node name="Tile0098" type="Sprite2D" parent="." unique_id=52592098]
-position = Vector2(1191, 1872.3118)
+position = Vector2(1191, 1872)
 texture = ExtResource("3_4mrxx")
 
 [node name="Tile0099" type="Sprite2D" parent="." unique_id=1024502476]
-position = Vector2(1162, 1856.3118)
+position = Vector2(1162, 1856)
 texture = ExtResource("3_4mrxx")
 
 [node name="Tile0100" type="Sprite2D" parent="." unique_id=1959902130]
-position = Vector2(1167, 1860.3118)
+position = Vector2(1167, 1860)
 texture = ExtResource("3_4mrxx")
 
 [node name="Tile0101" type="Sprite2D" parent="." unique_id=617511049]
-position = Vector2(1171, 1865.3118)
+position = Vector2(1171, 1865)
 texture = ExtResource("3_4mrxx")
 
 [node name="Tile0102" type="Sprite2D" parent="." unique_id=2011033412]
-position = Vector2(1173, 1870.3118)
+position = Vector2(1173, 1870)
 texture = ExtResource("3_4mrxx")
 
 [node name="KingPath2D" type="Path2D" parent="." unique_id=178148283]
-position = Vector2(862, 1606.3118)
+position = Vector2(862, 1606)
 curve = SubResource("Curve2D_p57ef")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="KingPath2D" unique_id=1976641749]
-position = Vector2(366, 251.3333)
+position = Vector2(366, 251)
 rotates = false
 
 [node name="King" type="Sprite2D" parent="KingPath2D/PathFollow2D" unique_id=2127320142]
@@ -98,7 +98,7 @@ script = ExtResource("5_w7kh3")
 coords_type = 2
 
 [node name="PriestPath2D" type="Path2D" parent="." unique_id=274425350]
-position = Vector2(1137, 1846.3118)
+position = Vector2(1137, 1846)
 curve = SubResource("Curve2D_iywne")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="PriestPath2D" unique_id=643123482]
