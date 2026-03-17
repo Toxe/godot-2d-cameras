@@ -17,48 +17,21 @@ layout_mode = 2
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="HBoxContainer9" type="HBoxContainer" parent="HBoxContainer/VBoxContainer" unique_id=109832277]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer/HBoxContainer9" unique_id=2007414487]
-layout_mode = 2
-text = "Time:
-Frame:
-FPS:"
-horizontal_alignment = 2
-
-[node name="FrameLabel" type="Label" parent="HBoxContainer/VBoxContainer/HBoxContainer9" unique_id=810789044]
-layout_mode = 2
-text = "???"
-
 [node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/VBoxContainer" unique_id=1624047596]
 layout_mode = 2
 
 [node name="Label" type="Label" parent="HBoxContainer/VBoxContainer/HBoxContainer" unique_id=972773444]
 layout_mode = 2
 text = "Camera:
-position smoothing:
 position:
 global position:
 target position:
+screen center position:
 offset:
-screen center position:"
+position smoothing:"
 horizontal_alignment = 2
 
 [node name="CameraLabel" type="Label" parent="HBoxContainer/VBoxContainer/HBoxContainer" unique_id=871100353]
-layout_mode = 2
-text = "???"
-
-[node name="HBoxContainer2" type="HBoxContainer" parent="HBoxContainer/VBoxContainer" unique_id=281026379]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer/HBoxContainer2" unique_id=932733650]
-layout_mode = 2
-text = "TextureRect canvas position:
-screen position:"
-horizontal_alignment = 2
-
-[node name="TextureRectLabel" type="Label" parent="HBoxContainer/VBoxContainer/HBoxContainer2" unique_id=156797625]
 layout_mode = 2
 text = "???"
 
@@ -67,24 +40,12 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="HBoxContainer/VBoxContainer/HBoxContainer3" unique_id=510147200]
 layout_mode = 2
-text = "King global position:
-screen position:"
+text = "Actor:
+global position:
+viewport position:"
 horizontal_alignment = 2
 
-[node name="KingLabel" type="Label" parent="HBoxContainer/VBoxContainer/HBoxContainer3" unique_id=1766548113]
-layout_mode = 2
-text = "???"
-
-[node name="HBoxContainer7" type="HBoxContainer" parent="HBoxContainer/VBoxContainer" unique_id=2007705510]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer/HBoxContainer7" unique_id=1876802483]
-layout_mode = 2
-text = "Priest global position:
-screen position:"
-horizontal_alignment = 2
-
-[node name="PriestLabel" type="Label" parent="HBoxContainer/VBoxContainer/HBoxContainer7" unique_id=362510933]
+[node name="ActorLabel" type="Label" parent="HBoxContainer/VBoxContainer/HBoxContainer3" unique_id=1766548113]
 layout_mode = 2
 text = "???"
 
@@ -94,7 +55,7 @@ layout_mode = 2
 [node name="Label" type="Label" parent="HBoxContainer/VBoxContainer/HBoxContainer5" unique_id=430946569]
 layout_mode = 2
 text = "Window size:
-World viewport size:
+World Viewport size:
 Snap 2D Transforms to Pixel:
 Snap 2D Vertices to Pixel:"
 horizontal_alignment = 2
@@ -160,15 +121,11 @@ step = 0.01
 layout_mode = 2
 text = "???"
 
-[node name="HotkeysLabel" type="Label" parent="HBoxContainer" unique_id=1540125152]
+[node name="HotkeysLabel" type="Label" parent="HBoxContainer/VBoxContainer" unique_id=1540125152]
 layout_mode = 2
-size_flags_vertical = 0
 text = "Move Actor: WASD
 Next/Previous Actor: X / Shift+X
-Toggle Fullscreen: F
-Toggle Debug Draw: F1
-Toggle Debug Text: F2
-Toggle UI: U
+
 Next/Previous Camera: C / Shift+C
 Move Camera (Offset): Arrow Keys
 Move Camera (Position): Ctrl + Arrow Keys
@@ -176,10 +133,35 @@ Slow Camera Movement: Hold Shift
 Zoom Camera: Mouse Wheel
 Recenter Camera: R
 Toggle Camera Smoothing: V
+
 Toggle Snap 2D Transforms to Pixel: N
-Toggle Snap 2D Vertices to Pixel: M
-Quit: Escape"
+Toggle Snap 2D Vertices to Pixel: M"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="HBoxContainer" unique_id=963396975]
+layout_mode = 2
+
+[node name="HBoxContainer9" type="HBoxContainer" parent="HBoxContainer/VBoxContainer2" unique_id=109832277]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer2/HBoxContainer9" unique_id=2007414487]
+layout_mode = 2
+text = "Time:
+Frame:
+FPS:"
 horizontal_alignment = 2
+
+[node name="FrameLabel" type="Label" parent="HBoxContainer/VBoxContainer2/HBoxContainer9" unique_id=810789044]
+layout_mode = 2
+text = "???"
+
+[node name="HotkeysLabel2" type="Label" parent="HBoxContainer/VBoxContainer2" unique_id=1650477627]
+layout_mode = 2
+text = "Toggle Fullscreen: F
+Toggle UI: U
+Toggle Debug Draw: F1
+Toggle Debug Text: F2
+
+Quit: Escape"
 
 [connection signal="value_changed" from="HBoxContainer/VBoxContainer/GridContainer/CameraZoomSlider" to="." method="_on_camera_zoom_slider_value_changed"]
 [connection signal="value_changed" from="HBoxContainer/VBoxContainer/GridContainer/KingSpeedSlider" to="." method="_on_king_speed_slider_value_changed"]

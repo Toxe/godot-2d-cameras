@@ -5,15 +5,13 @@ class_name UI extends Control
 @export var texture_rect: TextureRect
 @export var sub_viewport: SubViewport
 
-@onready var frame_label: Label = $HBoxContainer/VBoxContainer/HBoxContainer9/FrameLabel
+@onready var frame_label: Label = $HBoxContainer/VBoxContainer2/HBoxContainer9/FrameLabel
 @onready var camera_label: Label = $HBoxContainer/VBoxContainer/HBoxContainer/CameraLabel
 @onready var camera_zoom_slider: HSlider = $HBoxContainer/VBoxContainer/GridContainer/CameraZoomSlider
 @onready var camera_zoom_label: Label = $HBoxContainer/VBoxContainer/GridContainer/CameraZoomLabel
-@onready var texture_rect_label: Label = $HBoxContainer/VBoxContainer/HBoxContainer2/TextureRectLabel
-@onready var king_label: Label = $HBoxContainer/VBoxContainer/HBoxContainer3/KingLabel
+@onready var actor_label: Label = $HBoxContainer/VBoxContainer/HBoxContainer3/ActorLabel
 @onready var king_speed_slider: HSlider = $HBoxContainer/VBoxContainer/GridContainer/KingSpeedSlider
 @onready var king_speed_label: Label = $HBoxContainer/VBoxContainer/GridContainer/KingSpeedLabel
-@onready var priest_label: Label = $HBoxContainer/VBoxContainer/HBoxContainer7/PriestLabel
 @onready var priest_speed_slider: HSlider = $HBoxContainer/VBoxContainer/GridContainer/PriestSpeedSlider
 @onready var priest_speed_label: Label = $HBoxContainer/VBoxContainer/GridContainer/PriestSpeedLabel
 @onready var window_size_label: Label = $HBoxContainer/VBoxContainer/HBoxContainer5/WindowSizeLabel
@@ -29,23 +27,19 @@ func _process(_delta: float) -> void:
     if camera_manager && camera_manager.current_camera:
         camera_label.text = "%s %s\n%s\n%s\n%s\n%s\n%s\n%s" % [
             camera_manager.current_camera.get_coords_type_symbol(), camera_manager.current_camera.name,
-            "on" if camera_manager.current_camera.position_smoothing_enabled else "off",
             Format.format_position(camera_manager.current_camera.position, camera_manager.current_camera.coords_type),
             Format.format_position(camera_manager.current_camera.global_position, camera_manager.current_camera.coords_type),
             Format.format_position(camera_manager.current_camera.get_target_position(), camera_manager.current_camera.coords_type),
-            Format.format_position(camera_manager.current_camera.offset, camera_manager.current_camera.coords_type),
             Format.format_position(camera_manager.current_camera.get_screen_center_position(), camera_manager.current_camera.coords_type),
+            Format.format_position(camera_manager.current_camera.offset, camera_manager.current_camera.coords_type),
+            "on" if camera_manager.current_camera.position_smoothing_enabled else "off",
         ]
 
         camera_zoom_slider.set_value_no_signal(camera_manager.current_camera.get_zoom_target().x)
         camera_zoom_label.text = "%.2f" % camera_manager.current_camera.get_zoom_target().x
 
-    if texture_rect:
-        texture_rect_label.text = "%s\n%s" % [Format.format_position(texture_rect.get_canvas_transform().origin), Format.format_position(texture_rect.get_screen_transform().origin)]
-
     if world:
-        king_label.text = "%s\n%s" % [Format.format_position(world.king.global_position, Enums.CoordsType.World), Format.format_position(world.king.get_screen_transform().origin, Enums.CoordsType.World)]
-        priest_label.text = "%s\n%s" % [Format.format_position(world.priest.global_position, Enums.CoordsType.World), Format.format_position(world.priest.get_screen_transform().origin, Enums.CoordsType.World)]
+        actor_label.text = "%s\n%s\n%s" % [world.current_actor.name, Format.format_position(world.current_actor.global_position, Enums.CoordsType.World), Format.format_position(transform_to_world_viewport_canvas_coords(Enums.CoordsType.World, world.current_actor.global_position), Enums.CoordsType.WorldViewportCanvas)]
         window_size_label.text = "%s\n%s\n%s\n%s" % [Format.format_size(get_window().size), Format.format_size((world.get_viewport() as SubViewport).size), sub_viewport.snap_2d_transforms_to_pixel, sub_viewport.snap_2d_vertices_to_pixel]
 
         king_speed_slider.value = world.king_speed
