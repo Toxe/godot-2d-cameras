@@ -93,7 +93,7 @@ texture = ExtResource("4_7r4gi")
 
 [node name="WorldActorCamera" type="Camera2D" parent="KingPath2D/PathFollow2D/King" unique_id=1725449495]
 position_smoothing_enabled = true
-position_smoothing_speed = 1.0
+position_smoothing_speed = 2.0
 script = ExtResource("5_w7kh3")
 coords_type = 2
 
@@ -111,7 +111,7 @@ texture = ExtResource("6_e3hyu")
 [node name="WorldCamera" type="Camera2D" parent="." unique_id=1387311547]
 enabled = false
 position_smoothing_enabled = true
-position_smoothing_speed = 1.0
+position_smoothing_speed = 2.0
 script = ExtResource("5_w7kh3")
 coords_type = 1
 
