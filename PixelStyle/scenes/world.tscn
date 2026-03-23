@@ -9,6 +9,18 @@
 [ext_resource type="Texture2D" uid="uid://dau4nff1fgbr8" path="res://assets/images/plane.png" id="7_4mrxx"]
 [ext_resource type="Texture2D" uid="uid://r4sbrx6kknmf" path="res://assets/images/helo.png" id="8_7r4gi"]
 
+[sub_resource type="Gradient" id="Gradient_4mrxx"]
+offsets = PackedFloat32Array(0.5, 1)
+colors = PackedColorArray(0.33960718, 0.5426333, 1, 1, 0.29803923, 0.29803923, 0.29803923, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_7r4gi"]
+gradient = SubResource("Gradient_4mrxx")
+width = 256
+height = 256
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 0.5)
+
 [sub_resource type="Curve2D" id="Curve2D_p57ef"]
 _data = {
 "points": PackedVector2Array(-5.085176, 18.722694, 5.085176, -18.722694, 366, 251, -18.352861, 1.6642394, 18.352861, -1.6642394, 420, 233, -1.1557218, -9.569376, 1.1557218, 9.569376, 440, 246, 8.043823, -1.4793239, 0, 0, 418, 270, 0, 0, -8.875943, -1.3868661, 390, 270, 7.535306, 16.41125, -7.535306, -16.41125, 366, 251)
@@ -26,8 +38,15 @@ script = ExtResource("1_qfnet")
 current_actor = NodePath("KingPath2D/PathFollow2D/King")
 actors = [NodePath("KingPath2D/PathFollow2D/King"), NodePath("PriestPath2D/PathFollow2D/Priest"), NodePath("Helo"), NodePath("Plane")]
 
+[node name="TextureRect" type="TextureRect" parent="." unique_id=577151166]
+offset_left = -2000.0
+offset_top = -2000.0
+offset_right = 6032.0
+offset_bottom = 5024.0
+texture = SubResource("GradientTexture2D_7r4gi")
+metadata/_edit_lock_ = true
+
 [node name="Background" type="Sprite2D" parent="." unique_id=2088718703]
-z_index = -1
 texture = ExtResource("2_i7141")
 centered = false
 metadata/_edit_lock_ = true
