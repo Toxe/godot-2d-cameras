@@ -39,8 +39,17 @@ func _process(_delta: float) -> void:
         camera_zoom_label.text = "%.2f" % camera_manager.current_camera.get_zoom_target().x
 
     if world:
-        actor_label.text = "%s\n%s\n%s" % [world.current_actor.name, Format.format_position(world.current_actor.global_position, Enums.CoordsType.World), Format.format_position(transform_to_world_viewport_canvas_coords(Enums.CoordsType.World, world.current_actor.global_position), Enums.CoordsType.WorldViewportCanvas)]
-        window_size_label.text = "%s\n%s\n%s\n%s" % [Format.format_size(get_window().size), Format.format_size((world.get_viewport() as SubViewport).size), sub_viewport.snap_2d_transforms_to_pixel, sub_viewport.snap_2d_vertices_to_pixel]
+        actor_label.text = "%s\n%s\n%s" % [
+            world.current_actor.name,
+            Format.format_position(world.current_actor.global_position, Enums.CoordsType.World),
+            Format.format_position(transform_to_world_viewport_canvas_coords(Enums.CoordsType.World, world.current_actor.global_position), Enums.CoordsType.WorldViewportCanvas)
+        ]
+        window_size_label.text = "%s\n%s\n%s\n%s" % [
+            Format.format_size(get_window().size),
+            Format.format_size((world.get_viewport() as SubViewport).size),
+            sub_viewport.snap_2d_transforms_to_pixel,
+            sub_viewport.snap_2d_vertices_to_pixel
+        ]
 
         king_speed_slider.value = world.king_speed
         king_speed_label.text = "%.2f" % world.king_speed
