@@ -42,7 +42,7 @@ func _process(_delta: float) -> void:
         actor_label.text = "%s\n%s\n%s" % [
             world.current_actor.name,
             Format.format_position(world.current_actor.global_position, Enums.CoordsType.World),
-            Format.format_position(transform_to_world_viewport_canvas_coords(Enums.CoordsType.World, world.current_actor.global_position), Enums.CoordsType.WorldViewportCanvas)
+            Format.format_position(transform_to_world_viewport_coords(Enums.CoordsType.World, world.current_actor.global_position), Enums.CoordsType.WorldViewport)
         ]
         window_size_label.text = "%s\n%s\n%s\n%s" % [
             Format.format_size(get_window().size),
@@ -108,7 +108,7 @@ func _draw() -> void:
     var ui_coords := get_local_mouse_position()
     var world_coords := transform_to_world_coords(from_type, ui_coords)
     var world_actor_coords := transform_to_world_actor_coords(from_type, ui_coords)
-    var world_viewport_canvas_coords := transform_to_world_viewport_canvas_coords(from_type, ui_coords)
+    var world_viewport_coords := transform_to_world_viewport_coords(from_type, ui_coords)
     var texture_coords := transform_to_texture_coords(from_type, ui_coords)
     var ui_canvas_coords := transform_to_ui_canvas_coords(from_type, ui_coords)
     var main_coords := transform_to_main_coords(from_type, ui_coords)
@@ -117,7 +117,7 @@ func _draw() -> void:
     var lines: Array[String]
     lines.append(Format.format_position(world_coords, Enums.CoordsType.World))
     lines.append(Format.format_position(world_actor_coords, Enums.CoordsType.WorldActor))
-    lines.append(Format.format_position(world_viewport_canvas_coords, Enums.CoordsType.WorldViewportCanvas))
+    lines.append(Format.format_position(world_viewport_coords, Enums.CoordsType.WorldViewport))
     lines.append(Format.format_position(texture_coords, Enums.CoordsType.Texture))
     lines.append(Format.format_position(ui_coords, Enums.CoordsType.UI))
     lines.append(Format.format_position(ui_canvas_coords, Enums.CoordsType.UICanvas))
@@ -154,41 +154,41 @@ func transform_to_world_coords(from: Enums.CoordsType, coords: Vector2) -> Vecto
     match from:
         Enums.CoordsType.World, Enums.CoordsType.WorldActor:
             return coords
-        Enums.CoordsType.WorldViewportCanvas:
-            var coords_on_world_viewport_canvas := coords
-            var coords_in_world := world.get_global_transform().affine_inverse() * coords_on_world_viewport_canvas
+        Enums.CoordsType.WorldViewport:
+            var coords_on_world_viewport := coords
+            var coords_in_world := world.get_global_transform().affine_inverse() * coords_on_world_viewport
             return coords_in_world
         Enums.CoordsType.Texture:
             var coords_on_texture_rect := coords
-            var coords_on_world_viewport_canvas := to_viewport_coords(coords_on_texture_rect)
-            var coords_in_world := world.get_global_transform_with_canvas().affine_inverse() * coords_on_world_viewport_canvas
+            var coords_on_world_viewport := to_viewport_coords(coords_on_texture_rect)
+            var coords_in_world := world.get_global_transform_with_canvas().affine_inverse() * coords_on_world_viewport
             return coords_in_world
         Enums.CoordsType.UI:
             var coords_on_ui := coords
             var coords_on_ui_canvas := get_global_transform_with_canvas() * coords_on_ui
             var coords_on_texture_rect := texture_rect.get_global_transform_with_canvas().affine_inverse() * coords_on_ui_canvas
-            var coords_on_world_viewport_canvas := to_viewport_coords(coords_on_texture_rect)
-            var coords_in_world := world.get_global_transform_with_canvas().affine_inverse() * coords_on_world_viewport_canvas
+            var coords_on_world_viewport := to_viewport_coords(coords_on_texture_rect)
+            var coords_in_world := world.get_global_transform_with_canvas().affine_inverse() * coords_on_world_viewport
             return coords_in_world
         Enums.CoordsType.UICanvas:
             var coords_on_ui_canvas := coords
             var coords_on_main_viewport := get_canvas_transform() * coords_on_ui_canvas
             var coords_on_texture_rect := texture_rect.get_global_transform_with_canvas().affine_inverse() * coords_on_main_viewport
-            var coords_on_world_viewport_canvas := to_viewport_coords(coords_on_texture_rect)
-            var coords_in_world := world.get_global_transform_with_canvas().affine_inverse() * coords_on_world_viewport_canvas
+            var coords_on_world_viewport := to_viewport_coords(coords_on_texture_rect)
+            var coords_in_world := world.get_global_transform_with_canvas().affine_inverse() * coords_on_world_viewport
             return coords_in_world
         Enums.CoordsType.Main:
             var coords_on_main_viewport := coords
             var coords_on_texture_rect := texture_rect.get_global_transform_with_canvas().affine_inverse() * coords_on_main_viewport
-            var coords_on_world_viewport_canvas := to_viewport_coords(coords_on_texture_rect)
-            var coords_in_world := world.get_global_transform_with_canvas().affine_inverse() * coords_on_world_viewport_canvas
+            var coords_on_world_viewport := to_viewport_coords(coords_on_texture_rect)
+            var coords_in_world := world.get_global_transform_with_canvas().affine_inverse() * coords_on_world_viewport
             return coords_in_world
         Enums.CoordsType.Screen:
             var coords_on_screen := coords
             var coords_on_main_viewport := get_viewport().get_screen_transform().affine_inverse() * coords_on_screen
             var coords_on_texture_rect := texture_rect.get_global_transform_with_canvas().affine_inverse() * coords_on_main_viewport
-            var coords_on_world_viewport_canvas := to_viewport_coords(coords_on_texture_rect)
-            var coords_in_world := world.get_global_transform_with_canvas().affine_inverse() * coords_on_world_viewport_canvas
+            var coords_on_world_viewport := to_viewport_coords(coords_on_texture_rect)
+            var coords_in_world := world.get_global_transform_with_canvas().affine_inverse() * coords_on_world_viewport
             return coords_in_world
         _:
             assert(false, "Enums.CoordsType %s not supported" % from)
@@ -199,41 +199,41 @@ func transform_to_world_actor_coords(from: Enums.CoordsType, coords: Vector2) ->
     return transform_to_world_coords(from, coords)
 
 
-func transform_to_world_viewport_canvas_coords(from: Enums.CoordsType, coords: Vector2) -> Vector2:
+func transform_to_world_viewport_coords(from: Enums.CoordsType, coords: Vector2) -> Vector2:
     match from:
         Enums.CoordsType.World, Enums.CoordsType.WorldActor:
             var coords_in_world := coords
-            var coords_on_world_viewport_canvas := world.get_global_transform() * coords_in_world
-            return coords_on_world_viewport_canvas
-        Enums.CoordsType.WorldViewportCanvas:
+            var coords_on_world_viewport := world.get_global_transform() * coords_in_world
+            return coords_on_world_viewport
+        Enums.CoordsType.WorldViewport:
             return coords
         Enums.CoordsType.Texture:
             var coords_on_texture_rect := coords
-            var coords_on_world_viewport_canvas := sub_viewport.canvas_transform.affine_inverse() * to_viewport_coords(coords_on_texture_rect)
-            return coords_on_world_viewport_canvas
+            var coords_on_world_viewport := sub_viewport.canvas_transform.affine_inverse() * to_viewport_coords(coords_on_texture_rect)
+            return coords_on_world_viewport
         Enums.CoordsType.UI:
             var coords_on_ui := coords
             var coords_on_ui_canvas := get_global_transform_with_canvas() * coords_on_ui
             var coords_on_texture_rect := texture_rect.get_global_transform_with_canvas().affine_inverse() * coords_on_ui_canvas
-            var coords_on_world_viewport_canvas := sub_viewport.canvas_transform.affine_inverse() * to_viewport_coords(coords_on_texture_rect)
-            return coords_on_world_viewport_canvas
+            var coords_on_world_viewport := sub_viewport.canvas_transform.affine_inverse() * to_viewport_coords(coords_on_texture_rect)
+            return coords_on_world_viewport
         Enums.CoordsType.UICanvas:
             var coords_on_ui_canvas := coords
             var coords_on_main_viewport := get_canvas_transform() * coords_on_ui_canvas
             var coords_on_texture_rect := texture_rect.get_global_transform_with_canvas().affine_inverse() * coords_on_main_viewport
-            var coords_on_world_viewport_canvas := sub_viewport.canvas_transform.affine_inverse() * to_viewport_coords(coords_on_texture_rect)
-            return coords_on_world_viewport_canvas
+            var coords_on_world_viewport := sub_viewport.canvas_transform.affine_inverse() * to_viewport_coords(coords_on_texture_rect)
+            return coords_on_world_viewport
         Enums.CoordsType.Main:
             var coords_on_main_viewport := coords
             var coords_on_texture_rect := texture_rect.get_global_transform_with_canvas().affine_inverse() * coords_on_main_viewport
-            var coords_on_world_viewport_canvas := sub_viewport.canvas_transform.affine_inverse() * to_viewport_coords(coords_on_texture_rect)
-            return coords_on_world_viewport_canvas
+            var coords_on_world_viewport := sub_viewport.canvas_transform.affine_inverse() * to_viewport_coords(coords_on_texture_rect)
+            return coords_on_world_viewport
         Enums.CoordsType.Screen:
             var coords_on_screen := coords
             var coords_on_main_viewport := get_viewport().get_screen_transform().affine_inverse() * coords_on_screen
             var coords_on_texture_rect := texture_rect.get_global_transform_with_canvas().affine_inverse() * coords_on_main_viewport
-            var coords_on_world_viewport_canvas := sub_viewport.canvas_transform.affine_inverse() * to_viewport_coords(coords_on_texture_rect)
-            return coords_on_world_viewport_canvas
+            var coords_on_world_viewport := sub_viewport.canvas_transform.affine_inverse() * to_viewport_coords(coords_on_texture_rect)
+            return coords_on_world_viewport
         _:
             assert(false, "Enums.CoordsType %s not supported" % from)
             return Vector2.ZERO
@@ -243,12 +243,12 @@ func transform_to_texture_coords(from: Enums.CoordsType, coords: Vector2) -> Vec
     match from:
         Enums.CoordsType.World, Enums.CoordsType.WorldActor:
             var coords_in_world := coords
-            var coords_on_world_viewport_canvas := world.get_global_transform_with_canvas() * coords_in_world
-            var coords_on_texture_rect := to_viewport_coords(coords_on_world_viewport_canvas)
+            var coords_on_world_viewport := world.get_global_transform_with_canvas() * coords_in_world
+            var coords_on_texture_rect := to_viewport_coords(coords_on_world_viewport)
             return coords_on_texture_rect
-        Enums.CoordsType.WorldViewportCanvas:
-            var coords_on_world_viewport_canvas := coords
-            var coords_on_texture_rect := to_viewport_coords(sub_viewport.canvas_transform * coords_on_world_viewport_canvas)
+        Enums.CoordsType.WorldViewport:
+            var coords_on_world_viewport := coords
+            var coords_on_texture_rect := to_viewport_coords(sub_viewport.canvas_transform * coords_on_world_viewport)
             return coords_on_texture_rect
         Enums.CoordsType.Texture:
             return coords
@@ -280,14 +280,14 @@ func transform_to_ui_coords(from: Enums.CoordsType, coords: Vector2) -> Vector2:
     match from:
         Enums.CoordsType.World, Enums.CoordsType.WorldActor:
             var coords_in_world := coords
-            var coords_on_world_viewport_canvas := world.get_global_transform_with_canvas() * coords_in_world
-            var coords_on_texture_rect := to_viewport_coords(coords_on_world_viewport_canvas)
+            var coords_on_world_viewport := world.get_global_transform_with_canvas() * coords_in_world
+            var coords_on_texture_rect := to_viewport_coords(coords_on_world_viewport)
             var coords_on_ui_canvas := texture_rect.get_global_transform_with_canvas() * coords_on_texture_rect
             var coords_on_ui := get_global_transform_with_canvas().affine_inverse() * coords_on_ui_canvas
             return coords_on_ui
-        Enums.CoordsType.WorldViewportCanvas:
-            var coords_on_world_viewport_canvas := coords
-            var coords_on_texture_rect := to_viewport_coords(sub_viewport.canvas_transform * coords_on_world_viewport_canvas)
+        Enums.CoordsType.WorldViewport:
+            var coords_on_world_viewport := coords
+            var coords_on_texture_rect := to_viewport_coords(sub_viewport.canvas_transform * coords_on_world_viewport)
             var coords_on_ui_canvas := texture_rect.get_global_transform_with_canvas() * coords_on_texture_rect
             var coords_on_ui := get_global_transform_with_canvas().affine_inverse() * coords_on_ui_canvas
             return coords_on_ui
@@ -320,14 +320,14 @@ func transform_to_ui_canvas_coords(from: Enums.CoordsType, coords: Vector2) -> V
     match from:
         Enums.CoordsType.World, Enums.CoordsType.WorldActor:
             var coords_in_world := coords
-            var coords_on_world_viewport_canvas := world.get_global_transform_with_canvas() * coords_in_world
-            var coords_on_texture_rect := to_viewport_coords(coords_on_world_viewport_canvas)
+            var coords_on_world_viewport := world.get_global_transform_with_canvas() * coords_in_world
+            var coords_on_texture_rect := to_viewport_coords(coords_on_world_viewport)
             var coords_on_main_viewport := texture_rect.get_global_transform_with_canvas() * coords_on_texture_rect
             var coords_on_ui_canvas := get_canvas_transform().affine_inverse() * coords_on_main_viewport
             return coords_on_ui_canvas
-        Enums.CoordsType.WorldViewportCanvas:
-            var coords_on_world_viewport_canvas := coords
-            var coords_on_texture_rect := to_viewport_coords(sub_viewport.canvas_transform * coords_on_world_viewport_canvas)
+        Enums.CoordsType.WorldViewport:
+            var coords_on_world_viewport := coords
+            var coords_on_texture_rect := to_viewport_coords(sub_viewport.canvas_transform * coords_on_world_viewport)
             var coords_on_main_viewport := texture_rect.get_global_transform_with_canvas() * coords_on_texture_rect
             var coords_on_ui_canvas := get_canvas_transform().affine_inverse() * coords_on_main_viewport
             return coords_on_ui_canvas
@@ -360,13 +360,13 @@ func transform_to_main_coords(from: Enums.CoordsType, coords: Vector2) -> Vector
     match from:
         Enums.CoordsType.World, Enums.CoordsType.WorldActor:
             var coords_in_world := coords
-            var coords_on_world_viewport_canvas := world.get_global_transform_with_canvas() * coords_in_world
-            var coords_on_texture_rect := to_viewport_coords(coords_on_world_viewport_canvas)
+            var coords_on_world_viewport := world.get_global_transform_with_canvas() * coords_in_world
+            var coords_on_texture_rect := to_viewport_coords(coords_on_world_viewport)
             var coords_on_main_viewport := texture_rect.get_global_transform_with_canvas() * coords_on_texture_rect
             return coords_on_main_viewport
-        Enums.CoordsType.WorldViewportCanvas:
-            var coords_on_world_viewport_canvas := coords
-            var coords_on_texture_rect := to_viewport_coords(sub_viewport.canvas_transform * coords_on_world_viewport_canvas)
+        Enums.CoordsType.WorldViewport:
+            var coords_on_world_viewport := coords
+            var coords_on_texture_rect := to_viewport_coords(sub_viewport.canvas_transform * coords_on_world_viewport)
             var coords_on_main_viewport := texture_rect.get_global_transform_with_canvas() * coords_on_texture_rect
             return coords_on_main_viewport
         Enums.CoordsType.Texture:
@@ -396,14 +396,14 @@ func transform_to_screen_coords(from: Enums.CoordsType, coords: Vector2) -> Vect
     match from:
         Enums.CoordsType.World, Enums.CoordsType.WorldActor:
             var coords_in_world := coords
-            var coords_on_world_viewport_canvas := world.get_global_transform_with_canvas() * coords_in_world
-            var coords_on_texture_rect := to_viewport_coords(coords_on_world_viewport_canvas)
+            var coords_on_world_viewport := world.get_global_transform_with_canvas() * coords_in_world
+            var coords_on_texture_rect := to_viewport_coords(coords_on_world_viewport)
             var coords_on_main_viewport := texture_rect.get_global_transform_with_canvas() * coords_on_texture_rect
             var coords_on_screen := get_viewport().get_screen_transform() * coords_on_main_viewport
             return coords_on_screen
-        Enums.CoordsType.WorldViewportCanvas:
-            var coords_on_world_viewport_canvas := coords
-            var coords_on_texture_rect := to_viewport_coords(sub_viewport.canvas_transform * coords_on_world_viewport_canvas)
+        Enums.CoordsType.WorldViewport:
+            var coords_on_world_viewport := coords
+            var coords_on_texture_rect := to_viewport_coords(sub_viewport.canvas_transform * coords_on_world_viewport)
             var coords_on_main_viewport := texture_rect.get_global_transform_with_canvas() * coords_on_texture_rect
             var coords_on_screen := get_viewport().get_screen_transform() * coords_on_main_viewport
             return coords_on_screen
@@ -450,7 +450,7 @@ func _debug_dump_coords(from_type: Enums.CoordsType) -> void:
     for i in from.size():
         values[Enums.CoordsType.World].append(transform_to_world_coords(from_type, from[i]))
         values[Enums.CoordsType.WorldActor].append(transform_to_world_actor_coords(from_type, from[i]))
-        values[Enums.CoordsType.WorldViewportCanvas].append(transform_to_world_viewport_canvas_coords(from_type, from[i]))
+        values[Enums.CoordsType.WorldViewport].append(transform_to_world_viewport_coords(from_type, from[i]))
         values[Enums.CoordsType.Texture].append(transform_to_texture_coords(from_type, from[i]))
         values[Enums.CoordsType.UI].append(transform_to_ui_coords(from_type, from[i]))
         values[Enums.CoordsType.UICanvas].append(transform_to_ui_canvas_coords(from_type, from[i]))

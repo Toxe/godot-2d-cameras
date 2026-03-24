@@ -4,7 +4,7 @@ enum CoordsType {
     Unknown,
     World,  ## World
     WorldActor,  ## World/.../King
-    WorldViewportCanvas,  ## SubViewport
+    WorldViewport,  ## SubViewport
     Texture,  ## TextureRect
     UI,  ## CanvasLayer/UI
     UICanvas,  ## CanvasLayer

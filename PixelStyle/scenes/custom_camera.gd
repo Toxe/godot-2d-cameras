@@ -20,7 +20,7 @@ static func get_symbol_for_coords_type(type: Enums.CoordsType) -> String:
     match type:
         Enums.CoordsType.World: return "(World)"
         Enums.CoordsType.WorldActor: return "(WorldActor)"
-        Enums.CoordsType.WorldViewportCanvas: return "(WorldViewportCanvas)"
+        Enums.CoordsType.WorldViewport: return "(WorldViewport)"
         Enums.CoordsType.Texture: return "(Texture)"
         Enums.CoordsType.UI: return "(UI)"
         Enums.CoordsType.UICanvas: return "(UICanvas)"
