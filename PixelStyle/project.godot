@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="2D Pixel Style"
+config/name="2D Cameras"
 config/tags=PackedStringArray("2d", "test")
 run/main_scene="uid://dvkb4iyvuwwy4"
 config/features=PackedStringArray("4.6", "Forward Plus")
